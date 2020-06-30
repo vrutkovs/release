@@ -31,6 +31,9 @@ images:
       as:
       - quay.io/app-sre/cincinnati:builder
   to: e2e-test
+promotion:
+  namespace: cincinnati-ci
+  tag: latest
 resources:
   '*':
     requests:
