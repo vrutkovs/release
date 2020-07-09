@@ -40,7 +40,7 @@ items:
       namespace: cincinnati-ci
     roleRef:
       apiGroup: rbac.authorization.k8s.io
-      kind: Role
+      kind: ClusterRole
       name: admin
     subjects:
       - kind: Group
@@ -84,7 +84,7 @@ items:
       namespace: cincinnati-ci-public
     roleRef:
       apiGroup: rbac.authorization.k8s.io
-      kind: Role
+      kind: ClusterRole
       name: admin
     subjects:
       - kind: Group
