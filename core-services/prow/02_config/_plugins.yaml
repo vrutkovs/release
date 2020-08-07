@@ -613,6 +613,11 @@ config_updater:
         app.ci:
         - ci
       name: ci-operator-misc-configs
+    ci-operator/config/**/master-fcos.yaml:
+      clusters:
+        app.ci:
+        - ci
+      name: ci-operator-misc-configs
     ci-operator/config/**/oauth-proxy/openshift*-samples-operator-*.yaml:
       clusters:
         app.ci:
