@@ -1,6 +1,6 @@
 base_images:
   base:
-    name: "4.8"
+    name: "4.7"
     namespace: origin
     tag: base
   ocp_builder_golang-1.10:
@@ -20,12 +20,12 @@ images:
 - dockerfile_path: Dockerfile.okd
   from: base
   inputs:
-    openshift_release_golang-1.10:
+    ocp_builder_golang-1.10:
       as:
-      - registry.svc.ci.openshift.org/openshift/release:golang-1.10
+      - registry.svc.ci.openshift.org/ocp/builder:golang-1.10
   to: operator-marketplace
 promotion:
-  name: "4.8"
+  name: "4.7"
   namespace: origin
 resources:
   '*':
@@ -33,7 +33,7 @@ resources:
       cpu: 100m
       memory: 200Mi
 tag_specification:
-  name: "4.8"
+  name: "4.7"
   namespace: origin
 tests:
 - artifact_dir: /tmp/artifacts
@@ -42,7 +42,7 @@ tests:
     cluster_profile: aws
     workflow: openshift-e2e-aws
 zz_generated_metadata:
-  branch: master
+  branch: release-4.7
   org: operator-framework
   repo: operator-marketplace
   variant: okd
