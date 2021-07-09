@@ -37,6 +37,7 @@ images:
       - registry.svc.ci.openshift.org/openshift/release:golang-1.13
   to: cluster-samples-operator
 promotion:
+  disabled: true
   name: "4.9"
   namespace: origin
 resources:
@@ -48,10 +49,6 @@ tag_specification:
   name: "4.9"
   namespace: origin
 tests:
-- as: verify
-  commands: make verify
-  container:
-    from: src
 - as: unit
   commands: make test-unit
   container:
@@ -89,7 +86,7 @@ tests:
     cluster_profile: aws
     workflow: openshift-upgrade-aws
 zz_generated_metadata:
-  branch: master
+  branch: release-4.9
   org: openshift
   repo: cluster-samples-operator
   variant: okd
