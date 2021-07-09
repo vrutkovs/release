@@ -13,6 +13,7 @@ images:
   from: base
   to: cluster-update-keys
 promotion:
+  disabled: true
   name: "4.9"
   namespace: origin
 resources:
@@ -33,7 +34,7 @@ tests:
     cluster_profile: aws
     workflow: openshift-upgrade-aws
 zz_generated_metadata:
-  branch: master
+  branch: release-4.9
   org: openshift
   repo: cluster-update-keys
   variant: okd
