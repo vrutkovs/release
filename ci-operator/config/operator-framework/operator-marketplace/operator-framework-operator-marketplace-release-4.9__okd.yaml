@@ -24,7 +24,10 @@ base_images:
     namespace: openshift
     tag: golang-1.16
 build_root:
-  from_repository: true
+  image_stream_tag:
+    name: release
+    namespace: openshift
+    tag: golang-1.16
 images:
 - dockerfile_path: Dockerfile.okd
   from: base
@@ -34,6 +37,7 @@ images:
       - registry.ci.openshift.org/openshift/release:golang-1.16
   to: operator-marketplace
 promotion:
+  disabled: true
   name: "4.9"
   namespace: origin
 resources:
@@ -50,7 +54,7 @@ tests:
     cluster_profile: aws
     workflow: openshift-e2e-aws
 zz_generated_metadata:
-  branch: master
+  branch: release-4.9
   org: operator-framework
   repo: operator-marketplace
   variant: okd
