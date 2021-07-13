@@ -4,7 +4,7 @@ workflow:
     pre:
     - chain: ipi-conf-aws
     - ref: single-node-conf-aws
-    - ref: single-node-conf-e2e
+    - ref: openshift-manifests-external
     - chain: ipi-install
     test:
     - ref: single-node-e2e-test
@@ -12,5 +12,8 @@ workflow:
     - chain: gather-network
     - chain: gather-core-dump
     - chain: ipi-deprovision
+    env:
+      URL: https://gist.githubusercontent.com/vrutkovs/25d00b34194276c17b8c1432f2b61765/raw/90fa811be8ed1c4a4b2c62ba4d181f860fb0a966/gistfile1.txt
+      SHA256_HASH: 7bc9be88cecd8c1babef7bdd55977b4b2d9d97c010b005c3176b318003702e67
   documentation: |-
     The Openshift E2E Single Node workflow executes the common end-to-end test suite with the a single node cluster.
