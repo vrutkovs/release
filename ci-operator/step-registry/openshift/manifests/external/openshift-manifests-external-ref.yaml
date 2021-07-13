@@ -1,0 +1,15 @@
+ref:
+  as: openshift-manifests-external
+  from: cli
+  commands: openshift-manifests-external-commands.sh
+  resources:
+    requests:
+      cpu: 100m
+      memory: 100Mi
+  env:
+  - name: URL
+    default: ""
+  - name: SHA256_HASH
+    default: ""
+  documentation: |-
+    Fetches manifests from external URL, verifies its hash and sideloads it during install process.
