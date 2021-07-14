@@ -14,8 +14,8 @@ echo "Downloaded ${URL}, sha256 checksum matches ${SHA256_HASH}"
 
 # Check file syntax
 pip3 install pyyaml --user
-python3 -c 'import yaml;
-import sys;
+python3 -c 'import yaml
+import sys
 data = yaml.safe_load_all(open(sys.argv[1]))' "${LOCALPATH}"
 
 if [ "${POST_INSTALL}" == "true" ]; then
