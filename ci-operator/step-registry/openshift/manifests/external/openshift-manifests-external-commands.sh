@@ -8,3 +8,30 @@ LOCALPATH="${SHARED_DIR}/manifest_external.yaml"
 echo "${SHA256_HASH} -" > /tmp/sum.txt
 curl -fLs "${URL}" | tee "${LOCALPATH}" | sha256sum -c /tmp/sum.txt
 echo "Downloaded ${URL}, sha256 checksum matches ${SHA256_HASH}"
+
+# Check file syntax
+# Lets  check the syntax of yaml file by reading it.
+python -c 'import yaml;
+import sys;
+data = yaml.safe_load(open(sys.argv[1]))' "${LOCALPATH}"
+
+# If document contains multidoc yaml it needs to be split into separate manifests
+python -c 'import yaml;
+import sys;
+import os;
+
+localpath = sys.argv[1]
+try:
+  with open(localpath, "r") as stream:
+    data = list(yaml.load_all(stream, Loader=yaml.FullLoader))
+    if len(data) == 1:
+      sys.exit(0)
+    filename, file_extension = os.path.splitext(localpath)
+    for index, workload in enumerate(data, start=1):
+      new_doc_path = f"{filename}_{index}.yaml"
+      with open(new_doc_path, "a") as outfile:
+        yaml.dump(workload, outfile)
+        print(f"Created {new_doc_path}")
+    os.remove(localpath)
+except yaml.YAMLError as out:
+  print(out)' "${LOCALPATH}"

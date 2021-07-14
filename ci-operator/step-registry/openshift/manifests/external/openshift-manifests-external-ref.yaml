@@ -1,6 +1,6 @@
 ref:
   as: openshift-manifests-external
-  from: cli
+  from: tools
   commands: openshift-manifests-external-commands.sh
   resources:
     requests:
