@@ -11,5 +11,7 @@ ref:
     default: ""
   - name: SHA256_HASH
     default: ""
+  - name: POST_INSTALL
+    default: "false"
   documentation: |-
     Fetches manifests from external URL, verifies its hash and sideloads it during install process.

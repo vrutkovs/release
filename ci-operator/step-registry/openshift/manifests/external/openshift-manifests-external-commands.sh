@@ -18,8 +18,11 @@ python3 -c 'import yaml;
 import sys;
 data = yaml.safe_load_all(open(sys.argv[1]))' "${LOCALPATH}"
 
-# If document contains multidoc yaml it needs to be split into separate manifests
-python3 -c 'import yaml;
+if [ "${POST_INSTALL}" == "true" ]; then
+  oc apply -f "${LOCALPATH}"
+else
+  # If document contains multidoc yaml it needs to be split into separate manifests
+  python3 -c 'import yaml;
 import sys;
 import os;
 
@@ -38,3 +41,4 @@ try:
     os.remove(localpath)
 except yaml.YAMLError as out:
   print(out)' "${LOCALPATH}"
+fi
