@@ -6,7 +6,10 @@ set -o pipefail
 
 LOCALPATH="${SHARED_DIR}/manifest_external.yaml"
 echo "${SHA256_HASH} -" > /tmp/sum.txt
-curl -fLs "${URL}" | tee "${LOCALPATH}" | sha256sum -c /tmp/sum.txt
+if ! curl -fLs "${URL}" | tee "${LOCALPATH}" | sha256sum -c /tmp/sum.txt >/dev/null 2>/dev/null; then
+  echo "Expected file at ${URL} to have checksum ${SHA256_HASH} but instead got $(< "${LOCALPATH}" sha256sum | cut -d' ' -f1)"
+  exit 1
+fi
 echo "Downloaded ${URL}, sha256 checksum matches ${SHA256_HASH}"
 
 # Check file syntax
