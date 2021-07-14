@@ -23,8 +23,8 @@ if [ "${POST_INSTALL}" == "true" ]; then
 else
   # If document contains multidoc yaml it needs to be split into separate manifests
   python3 -c 'import yaml;
-import sys;
-import os;
+import sys
+import os
 
 localpath = sys.argv[1]
 try:
@@ -38,7 +38,7 @@ try:
       with open(new_doc_path, "a") as outfile:
         yaml.dump(workload, outfile)
         print(f"Created {new_doc_path}")
-    os.remove(localpath)
+  os.remove(localpath)
 except yaml.YAMLError as out:
   print(out)' "${LOCALPATH}"
 fi
