@@ -16,7 +16,7 @@ echo "Downloaded ${URL}, sha256 checksum matches ${SHA256_HASH}"
 pip3 install pyyaml --user
 python3 -c 'import yaml;
 import sys;
-data = yaml.safe_load(open(sys.argv[1]))' "${LOCALPATH}"
+data = yaml.safe_load_all(open(sys.argv[1]))' "${LOCALPATH}"
 
 # If document contains multidoc yaml it needs to be split into separate manifests
 python3 -c 'import yaml;
