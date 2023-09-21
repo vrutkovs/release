@@ -13,6 +13,7 @@ workflow:
       - ref: baremetalds-sno-conf
       - ref: openshift-e2e-cert-rotation-prepare-for-shutdown
       - ref: openshift-e2e-cert-rotation-shutdown
+      - ref: baremetalds-sno-test
     post:
       - ref: gather-cert-rotation
       - ref: baremetalds-packet-gather-metadata
